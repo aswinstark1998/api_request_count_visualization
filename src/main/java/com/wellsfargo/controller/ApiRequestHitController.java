@@ -51,7 +51,7 @@ public class ApiRequestHitController {
 				synchronized (mobile_count) {
 					tab_count++;
 				}
-				//Enable the service requested through mobile
+				//Enable the service requested through tab
 				break;				
 			default:
 				System.out.println("Error in API query");
