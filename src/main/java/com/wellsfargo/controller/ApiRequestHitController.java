@@ -7,10 +7,10 @@ import com.wellsfargo.util.Constants;
 @RestController
 public class ApiRequestHitController {
 
-	public static long total_count = 0;
-	public static long mobile_count = 0;
-	public static long web_count = 0;
-	public static long tab_count = 0;
+	public static Long total_count = 0l;
+	public static Long mobile_count = 0l;
+	public static Long web_count = 0l;
+	public static Long tab_count = 0l;
 
 	@GetMapping("/mobile_app")
 	public String helloMobile() {
@@ -34,15 +34,23 @@ public class ApiRequestHitController {
 
 		switch (whoCalled) {
 			case Constants.MOBILE_APP:
-				mobile_count++;
+				synchronized (mobile_count) {
+					mobile_count++;
+				}
+				
 				//Enable the service requested through mobile
 				break;
 			case Constants.WEB_APP:
-				web_count++;
+				synchronized (mobile_count) {
+					web_count++;
+				}
+				
 				//Enable the service requested through web
 				break;
 			case Constants.TAB_APP:
-				tab_count++;
+				synchronized (mobile_count) {
+					tab_count++;
+				}
 				//Enable the service requested through mobile
 				break;				
 			default:
